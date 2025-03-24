@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask HTML Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ESV 오디오 성경</h1>
+
+        <!-- 텍스트 입력 폼 -->
+        <form action="/generate" method="POST">
+            <label for="user_input">성경구절을 입력하세요(ex. Genesis1:1-1):</label>
+            <input type="text" id="user_input" name="user_input" required>
+            <button type="submit">조회</button>
+        </form>
+
+        {% if generated_html %}
+        <div class="result">
+            <div class="generated">
+                {{ generated_html | safe }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
